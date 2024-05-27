@@ -11,7 +11,7 @@ import {it, describe, expect, beforeEach, afterEach} from '@jest/globals';
 import Base from '../src';
 import {Provider} from 'react-redux';
 import store from '../src/api/store';
-import {render, screen, cleanup} from '@testing-library/react-native';
+import {render, screen, cleanup, waitFor} from '@testing-library/react-native';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {github_user as USER} from '../__mocks__/user.mock';
 
@@ -41,7 +41,7 @@ describe('Github users page render', () => {
       USER,
     ]);
 
-    await store.dispatch(thunkActionCreator());
+    await waitFor(() => store.dispatch(thunkActionCreator()));
 
     const state = store.getState().githubUser.githubUser;
 
