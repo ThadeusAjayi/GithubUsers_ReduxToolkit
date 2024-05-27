@@ -44,18 +44,17 @@ export default () => {
     }
   };
 
-  const renderItem = ({item: g_user}: {item: GitHubUser}) => {
-    return (
-      <View key={g_user.id} style={styles.user}>
-        <Text style={styles.userName}>{g_user.login}</Text>
-        <Image src={g_user.avatar_url} style={styles.avatar_url} />
-        <Text style={styles.userName}>{JSON.stringify(g_user)}</Text>
-      </View>
-    );
-  };
+  const renderItem = ({item: g_user}: {item: GitHubUser}) => (
+    <View key={g_user.id} style={styles.user} testID={`user_item_${g_user.id}`}>
+      <Text style={styles.userName}>{g_user.login}</Text>
+      <Image src={g_user.avatar_url} style={styles.avatar_url} />
+      <Text style={styles.userName}>{JSON.stringify(g_user)}</Text>
+    </View>
+  );
 
   return (
     <FlatList
+      testID="user_list"
       contentInsetAdjustmentBehavior="automatic"
       data={githubUser}
       onScroll={onScroll}
