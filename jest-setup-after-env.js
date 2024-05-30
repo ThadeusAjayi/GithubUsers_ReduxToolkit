@@ -1,3 +1,2 @@
-import {jest} from '@jest/globals';
-
+import './__mocks__/helpers.mock';
 jest.useFakeTimers();

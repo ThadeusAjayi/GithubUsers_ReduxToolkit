@@ -1,11 +1,17 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import GitHubUser from './types';
 import {getNextUrl} from './helpers';
-const BASE_URL = 'https://api.github.com/users?per_page=10';
+export const BASE_URL = 'https://api.github.com/users?per_page=10';
+
+const headers = new Headers();
+
+const BEARER = ``;
+
+headers.set('Authorization', BEARER);
 
 export const getGitHubUser = async (url?: string) => {
   try {
-    const response = await fetch(url ?? BASE_URL);
+    const response = await fetch(url ?? BASE_URL, {headers});
     getNextUrl(response);
     return response.json();
   } catch (error) {
@@ -18,6 +24,7 @@ export const fetchGithubUser = createAsyncThunk(
   'githubUser/all',
   async (url?: string) => {
     const response = await getGitHubUser(url);
+    response.message && console.warn(response.message);
     return response;
   },
 );
