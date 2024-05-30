@@ -5,9 +5,6 @@
 import 'react-native';
 import React from 'react';
 
-// Note: import explicitly to use the types shipped with jest.
-import {it, describe, expect, beforeEach, afterEach} from '@jest/globals';
-
 import Base from '../src';
 import {Provider} from 'react-redux';
 import store from '../src/api/store';
